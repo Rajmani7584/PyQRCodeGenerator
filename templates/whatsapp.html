@@ -1,0 +1,21 @@
+<label for="txt">Number: (with country code)</label><br />
+<input type="number" value="91" id="txt">
+<br /><br />
+<label for="msg">Message: (Optional)</label>
+<br />
+<textarea id="msg" rows="5"></textarea>
+<br />
+
+<script>
+    let el = document.getElementById('txt');
+    let msg = document.getElementById('msg');
+    let data = "http://wa.me/";
+    function generate() {
+        if (!/^[0-9]+$/.test(el.value)) {
+            alert("enter a valid number");
+            return;
+        }
+        data += el.value + "?text=" + msg.value;
+        getData(data);
+    }
+</script>

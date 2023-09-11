@@ -1,0 +1,14 @@
+<label for="txt">Number:</label><br />
+<input type="number" id="txt"><br />
+
+
+<script>
+    let el = document.getElementById('txt');
+    function generate() {
+        if (!/^[0-9]+$/.test(el.value)) {
+            alert("Mobile number should containd only numbers");
+            return;
+        }
+        getData(`tel://${el.value}`)
+    }
+</script>

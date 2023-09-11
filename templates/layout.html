@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{dataTypes[index].capitalize()}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+
+        function getData(txt) {
+            let data = {
+                data: txt
+            }
+            fetch('/qrApi', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(res => res.json()).then(data => {
+                document.getElementById('prev').innerHTML = `<img id='qr' src='${data.data}' />`;
+                document.querySelectorAll('.download')[0].style.display = 'grid';
+            })
+                .catch(err => {
+                    console.log(err);
+                    document.querySelectorAll('.download')[0].style.display = 'none';
+                })
+        }
+    </script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="container">
+            <section class="data_section">
+                <h2>Enter Details:</h2>
+                <label for="data-type">Data Type:</label>
+                <select onchange="changeDataType(this)" id="data-type">
+                    {%for i in dataTypes%}
+                    <option value="{{i}}" {%if dataTypes[index]==i%}selected{%endif%}>{{i.capitalize()}}</option>
+                    {%endfor%}
+                </select>
+                <br /><br />
+                <section>
+                    {% include dataTypes[index] + ".html"%}
+                    <br />
+                    <button onclick="generate()">Generate</button>
+                </section>
+            </section>
+            <section class="prev_section">
+                <section class="prev" id="prev"></section>
+                <div class="download" onclick="download()">
+                    <svg viewBox="0 0 100 100">
+                        <polygon points="50 10,50 80" stroke-width="20px" stroke="black" />
+                        <polygon points="10 50,90 50,50 90" fill="black" />
+                    </svg>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        function changeDataType(e) {
+            window.location.href = `/${e.value == "text" ? "" : e.value}`;
+        }
+
+        function download() {
+            data = document.getElementById('qr').src;
+            let link = document.createElement('a');
+            link.href = data;
+            link.download = 'qrcode.png';
+            link.click();
+        }
+
+    </script>
+</body>
+
+</html>

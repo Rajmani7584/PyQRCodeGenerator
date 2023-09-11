@@ -1,0 +1,63 @@
+<label for="ssid">SSID:</label>
+<input type="text" id="ssid" max="32" maxlength="32">
+<br /><br />
+<label for="security">Security:</label>
+<select onchange="changeSecurity(this)" id="security">
+    <option value="nopass">None</option>
+    <option value="WPA">WPA/WPA2</option>
+    <option value="WPA3">WPA3</option>
+</select>
+<br /><br />
+<label for="hidden">Hidden:</label>
+<input type="checkbox" id="hidden">
+<br /><br />
+<div class="pass" style="display: none;">
+    <label for="password">Password:</label>
+    <input type="text" id="password">
+</div><br />
+
+<script>
+    let ssid = document.getElementById('ssid');
+    let security = document.getElementById('security');
+    let hidden = document.getElementById('hidden');
+    let password = document.getElementById('password');
+    function generate() {
+        let data = "WIFI:";
+        if (ssid.value.length < 2 || ssidValidate(ssid.value)) {
+            alert(`SSID length should be between 2 to 32.\nAnd it should't contain any of $, ", ?, [, ], \\, +`);
+        }else {
+            data += `S:${ssid.value};`;
+            
+            if (security.value != "nopass") {
+                if (password.value.length < 8) {
+                    alert("password must be minimum of 8 character");
+                    return;
+                } else {
+                    data += `P:${password.value};`;
+                }
+            } else {
+            }
+            data += `T:${security.value};`;
+            data += `H:${hidden.checked?"Y":""};;`
+            getData(data);
+        }
+        
+    }
+
+    function changeSecurity(el) {
+        if (el.value == "nopass") {
+            document.querySelectorAll('.pass')[0].style.display = 'none'; 
+        }else {
+            document.querySelectorAll('.pass')[0].style.display = 'block';
+        }
+    }
+
+    const chars = ['$', '"', '?', '[', ']', '\\', '+']
+
+    function ssidValidate(ss) {
+        for (let i=0;i<chars.length;i++) {
+            if (ss.includes(chars[i])) return true;
+        }
+        return false;
+    }
+</script>

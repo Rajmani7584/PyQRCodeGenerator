@@ -1,0 +1,14 @@
+<label for="txt">Text:</label><br />
+<textarea id="txt" rows="5" maxlength="1024"></textarea>
+
+<script>
+    let el = document.getElementById('txt');
+    function generate() {
+        let txt = el.value;
+        if (txt.length > 0) {
+            getData(txt);
+        }else {
+            alert('enter some details');
+        }
+    }
+</script>

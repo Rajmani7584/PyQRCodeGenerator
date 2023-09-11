@@ -1,0 +1,18 @@
+<label for="txt">URL:</label><br />
+<input type="tel" id="txt" placeholder="https://google.com">
+<br />
+
+
+<script>
+    let el = document.getElementById('txt');
+    let data = "http://google.com"
+    function generate() {
+        if (el.value.length != 0) {
+            data = el.value;
+        } else {
+            alert("enter some details");
+            return;
+        }
+        getData(data);
+    }
+</script>
