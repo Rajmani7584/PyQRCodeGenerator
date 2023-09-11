@@ -2,7 +2,15 @@
 
 ## Installation
 
-```pip install flask pypng```
+Clone this repo:
+
+```git clone https://github.com/Rajmani7584/PyQRCodeGenerator```
+
+```cd PyQRCodeGenerator```
+
+### Install required packages
+
+```pip install -r requirements.txt```
 
 ```python3 main.py```
 
