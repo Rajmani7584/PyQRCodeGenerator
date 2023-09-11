@@ -76,6 +76,8 @@ section.prev_section .prev {
     border-radius: 8px;
     display: grid;
     place-items: center;
+    box-shadow: 0 10px 20px #00000022;
+    color: #aaddcc;
 }
 section.prev_section .prev img {
     height: 90%;
@@ -110,6 +112,7 @@ section.data_section button {
     outline: none;
     border-radius: 4px;
     font-size: medium;
+    margin-top: 20px;
 }
 
 @media only screen and (max-width: 680px) {
@@ -136,6 +139,7 @@ section.data_section button {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+        margin-top: unset;
     }
 
 }
