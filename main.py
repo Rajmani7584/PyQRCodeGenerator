@@ -4,7 +4,7 @@ import pyqrcode
 
 app = Flask(__name__)
 
-dataTypes = ['text', 'wifi', 'phone', 'url', 'whatsapp']
+dataTypes = ['text', 'wifi', 'phone', 'url', 'whatsapp', 'upi']
 
 @app.route('/')
 def main0():
@@ -25,6 +25,9 @@ def main4():
 @app.route('/whatsapp')
 def main5():
     return render_template("layout.html", dataTypes=dataTypes, index=4)
+@app.route('/upi')
+def main6():
+    return render_template("layout.html", dataTypes=dataTypes, index=5)
 
 @app.route('/qrApi', methods=['POST'])
 def genQr():

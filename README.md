@@ -1,6 +1,6 @@
 ## Generate QR code with awesome UI on local server made with Flask
 
-### Take a look at <a href="https://rajmani.pythonanywhere.com">Demo</a>
+### Take a look at <a href="https://rajmani7584.github.io/QRCodeGenerator">Demo</a>
 
 ## Installation
 
